@@ -1,5 +1,6 @@
 package com.cardano.rest.tests;
 
+import io.qameta.allure.Description;
 import io.restassured.http.ContentType;
 import org.testng.annotations.Test;
 
@@ -9,6 +10,7 @@ import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInC
 public class BlocksTest extends BaseTest {
 
     @Test
+    @Description("blocks/pages responds")
     public void blocksPages_basicResponse_test() {
         String endpoint = ("blocks/pages");
         String url = this.host + endpoint;
@@ -24,6 +26,7 @@ public class BlocksTest extends BaseTest {
     }
 
     @Test(dependsOnMethods={"blocksPages_basicResponse_test"})
+    @Description("blocks/pages matches expected JSON schema")
     public void blocksPages_validSchema_test() {
         String endpoint = ("blocks/pages");
         String url = this.host + endpoint;
@@ -36,6 +39,7 @@ public class BlocksTest extends BaseTest {
     }
 
     @Test
+    @Description("blocks/pages/total responds")
     public void blocksPagesTotal_basicResponse_test() {
         String endpoint = ("blocks/pages/total");
         String url = this.host + endpoint;
@@ -51,6 +55,7 @@ public class BlocksTest extends BaseTest {
     }
 
     @Test(dependsOnMethods = "blocksPagesTotal_basicResponse_test")
+    @Description("blocks/pages/total matches expected JSON schema")
     public void blocksPagesTotal_validSchema_test() {
         String endpoint = ("blocks/pages/total");
         String url = this.host + endpoint;
@@ -63,6 +68,7 @@ public class BlocksTest extends BaseTest {
     }
 
     @Test(dataProvider = "blockHashes", dataProviderClass = DataStore.class)
+    @Description("blocks/summary/{blockHash} responds")
     public void blocksSummaryBlockhash_basicResponse_test(String blockHash) {
         String endpoint = String.format("blocks/summary/%s", blockHash);
         String url = this.host + endpoint;
@@ -79,6 +85,7 @@ public class BlocksTest extends BaseTest {
 
     @Test(dataProvider = "blockHashes", dataProviderClass = DataStore.class,
             dependsOnMethods = "blocksSummaryBlockhash_basicResponse_test")
+    @Description("blocks/summary/{blockHash} matches expected JSON schema")
     public void blocksSummaryBlockhash_validSchema_test(String blockHash) {
         String endpoint = String.format("blocks/summary/%s", blockHash);
         String url = this.host + endpoint;
@@ -91,6 +98,7 @@ public class BlocksTest extends BaseTest {
     }
 
     @Test(dataProvider = "blockHashes", dataProviderClass = DataStore.class)
+    @Description("blocks/txs/{blockHash} responds")
     public void blocksTxsBlockhash_basicResponse_test(String blockHash) {
         String endpoint = String.format("blocks/txs/%s", blockHash);
         String url = this.host + endpoint;
@@ -107,6 +115,7 @@ public class BlocksTest extends BaseTest {
 
     @Test(dataProvider = "blockHashes", dataProviderClass = DataStore.class,
             dependsOnMethods = "blocksTxsBlockhash_basicResponse_test")
+    @Description("blocks/txs/{blockHash} matches expected JSON schema")
     public void blocksTxsBlockhash_validSchema_test(String blockHash) {
         String endpoint = String.format("blocks/txs/%s", blockHash);
         String url = this.host + endpoint;
