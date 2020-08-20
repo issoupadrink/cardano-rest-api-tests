@@ -11,42 +11,42 @@ public class EpochsTest {
     @Test
     public void epochsEpoch_basicResponse_test() {
         given().
-                when().
-                get("https://explorer.cardano.org/api/epochs/0").
-                then().
-                assertThat().
-                statusCode(200).
-                and().
-                contentType(ContentType.JSON);
+        when().
+            get("https://explorer.cardano.org/api/epochs/0").
+        then().
+            assertThat().
+            statusCode(200).
+        and().
+            contentType(ContentType.JSON);
     }
 
     @Test
     public void epochsEpoch_validSchema_test() {
         given().
-                get("https://explorer.cardano.org/api/epochs/0")
-                .then()
-                .assertThat()
-                .body(matchesJsonSchemaInClasspath("valid-epochs-epoch-schema.json"));
+            get("https://explorer.cardano.org/api/epochs/0")
+        .then()
+            .assertThat()
+            .body(matchesJsonSchemaInClasspath("valid-epochs-epoch-schema.json"));
     }
 
     @Test
     public void epochsEpochSlot_basicResponse_test() {
         given().
-                when().
-                get("https://explorer.cardano.org/api/epochs/0/0").
-                then().
-                assertThat().
-                statusCode(200).
-                and().
-                contentType(ContentType.JSON);
+        when().
+            get("https://explorer.cardano.org/api/epochs/0/0").
+        then().
+            assertThat().
+            statusCode(200).
+        and().
+            contentType(ContentType.JSON);
     }
 
     @Test
     public void epochsEpochSlot_validSchema_test() {
         given().
-                get("https://explorer.cardano.org/api/epochs/0/0")
-                .then()
-                .assertThat()
-                .body(matchesJsonSchemaInClasspath("valid-epochs-epoch-slot-schema.json"));
+            get("https://explorer.cardano.org/api/epochs/0/0")
+        .then()
+            .assertThat()
+            .body(matchesJsonSchemaInClasspath("valid-epochs-epoch-slot-schema.json"));
     }
 }
