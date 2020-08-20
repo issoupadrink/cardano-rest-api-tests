@@ -6,13 +6,16 @@ import org.testng.annotations.Test;
 import static io.restassured.RestAssured.given;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 
-public class BlocksTest {
+public class BlocksTest extends BaseTest {
 
     @Test
     public void blocksPages_basicResponse_test() {
+        String endpoint = ("blocks/pages");
+        String url = this.host + endpoint;
+
         given().
         when().
-            get("https://explorer.cardano.org/api/blocks/pages").
+            get(url).
         then().
             assertThat().
             statusCode(200).
@@ -22,8 +25,11 @@ public class BlocksTest {
 
     @Test(dependsOnMethods={"blocksPages_basicResponse_test"})
     public void blocksPages_validSchema_test() {
+        String endpoint = ("blocks/pages");
+        String url = this.host + endpoint;
+
         given().
-            get("https://explorer.cardano.org/api/blocks/pages")
+            get(url)
         .then()
         .assertThat()
             .body(matchesJsonSchemaInClasspath("valid-blocks-pages-schema.json"));
@@ -31,9 +37,12 @@ public class BlocksTest {
 
     @Test
     public void blocksPagesTotal_basicResponse_test() {
+        String endpoint = ("blocks/pages/total");
+        String url = this.host + endpoint;
+
         given().
         when().
-            get("https://explorer.cardano.org/api/blocks/pages/total").
+            get(url).
        then().
             assertThat().
             statusCode(200).
@@ -41,20 +50,26 @@ public class BlocksTest {
             contentType(ContentType.JSON);
     }
 
-    @Test
+    @Test(dependsOnMethods = "blocksPagesTotal_basicResponse_test")
     public void blocksPagesTotal_validSchema_test() {
+        String endpoint = ("blocks/pages/total");
+        String url = this.host + endpoint;
+
         given().
-            get("https://explorer.cardano.org/api/blocks/pages/total")
+            get(url)
         .then()
             .assertThat()
             .body(matchesJsonSchemaInClasspath("valid-blocks-pages-total-schema.json"));
     }
 
-    @Test
-    public void blocksSummaryBlockhash_basicResponse_test() {
+    @Test(dataProvider = "blockHashes", dataProviderClass = DataStore.class)
+    public void blocksSummaryBlockhash_basicResponse_test(String blockHash) {
+        String endpoint = String.format("blocks/summary/%s", blockHash);
+        String url = this.host + endpoint;
+
         given().
         when().
-            get("https://explorer.cardano.org/api/blocks/summary/3c89f7d9ff6c06468e32fd916d153b033264f780e11fca7750cb85f56d4f31d0").
+            get(url).
         then().
             assertThat().
             statusCode(200).
@@ -62,20 +77,27 @@ public class BlocksTest {
             contentType(ContentType.JSON);
     }
 
-    @Test
-    public void blocksSummaryBlockhash_validSchema_test() {
+    @Test(dataProvider = "blockHashes", dataProviderClass = DataStore.class,
+            dependsOnMethods = "blocksSummaryBlockhash_basicResponse_test")
+    public void blocksSummaryBlockhash_validSchema_test(String blockHash) {
+        String endpoint = String.format("blocks/summary/%s", blockHash);
+        String url = this.host + endpoint;
+
         given().
-            get("https://explorer.cardano.org/api/blocks/summary/3c89f7d9ff6c06468e32fd916d153b033264f780e11fca7750cb85f56d4f31d0")
+            get(url)
         .then()
             .assertThat()
             .body(matchesJsonSchemaInClasspath("valid-blocks-summary-blockhash-schema.json"));
     }
 
-    @Test
-    public void blocksTxsBlockhash_basicResponse_test() {
+    @Test(dataProvider = "blockHashes", dataProviderClass = DataStore.class)
+    public void blocksTxsBlockhash_basicResponse_test(String blockHash) {
+        String endpoint = String.format("blocks/txs/%s", blockHash);
+        String url = this.host + endpoint;
+
         given().
         when().
-            get("https://explorer.cardano.org/api/blocks/txs/3c89f7d9ff6c06468e32fd916d153b033264f780e11fca7750cb85f56d4f31d0").
+            get(url).
         then().
             assertThat().
             statusCode(200).
@@ -83,10 +105,14 @@ public class BlocksTest {
             contentType(ContentType.JSON);
     }
 
-    @Test
-    public void blocksTxsBlockhash_validSchema_test() {
+    @Test(dataProvider = "blockHashes", dataProviderClass = DataStore.class,
+            dependsOnMethods = "blocksTxsBlockhash_basicResponse_test")
+    public void blocksTxsBlockhash_validSchema_test(String blockHash) {
+        String endpoint = String.format("blocks/txs/%s", blockHash);
+        String url = this.host + endpoint;
+
         given().
-            get("https://explorer.cardano.org/api/blocks/txs/3c89f7d9ff6c06468e32fd916d153b033264f780e11fca7750cb85f56d4f31d0")
+            get(url)
         .then()
             .assertThat()
             .body(matchesJsonSchemaInClasspath("valid-blocks-txs-blockhash-schema.json"));

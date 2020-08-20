@@ -6,13 +6,16 @@ import org.testng.annotations.Test;
 import static io.restassured.RestAssured.given;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 
-public class TransactionsTest {
+public class TransactionsTest extends BaseTest {
 
     @Test
     public void txsLast_basicResponse_test() {
+        String endpoint = "txs/last";
+        String url = this.host + endpoint;
+
         given().
         when().
-            get("https://explorer.cardano.org/api/txs/last").
+            get(url).
         then().
             assertThat().
             statusCode(200).
@@ -20,20 +23,26 @@ public class TransactionsTest {
             contentType(ContentType.JSON);
     }
 
-    @Test
+    @Test(dependsOnMethods = "txsLast_basicResponse_test")
     public void txsLast_validSchema_test() {
+        String endpoint = "txs/last";
+        String url = this.host + endpoint;
+
         given().
-            get("https://explorer.cardano.org/api/txs/last")
+            get(url)
         .then()
             .assertThat()
             .body(matchesJsonSchemaInClasspath("valid-txs-last-schema.json"));
     }
 
-    @Test
-    public void txsSummaryTxid_basicResponse_test() {
+    @Test(dataProvider = "txs", dataProviderClass = DataStore.class)
+    public void txsSummaryTxid_basicResponse_test(String tx) {
+        String endpoint = String.format("txs/summary/%s", tx);
+        String url = this.host + endpoint;
+
         given().
         when().
-            get("https://explorer.cardano.org/api/txs/summary/3c89f7d9ff6c06468e32fd916d153b033264f780e11fca7750cb85f56d4f31d0").
+            get(url).
         then().
             assertThat().
             statusCode(200).
@@ -41,10 +50,14 @@ public class TransactionsTest {
             contentType(ContentType.JSON);
     }
 
-    @Test
-    public void txsSummaryTxid_validSchema_test() {
+    @Test(dataProvider = "txs", dataProviderClass = DataStore.class,
+            dependsOnMethods = "txsSummaryTxid_basicResponse_test")
+    public void txsSummaryTxid_validSchema_test(String tx) {
+        String endpoint = String.format("txs/summary/%s", tx);
+        String url = this.host + endpoint;
+
         given().
-            get("https://explorer.cardano.org/api/txs/summary/3c89f7d9ff6c06468e32fd916d153b033264f780e11fca7750cb85f56d4f31d0")
+            get(url)
         .then()
             .assertThat()
             .body(matchesJsonSchemaInClasspath("valid-txs-summary-txid-schema.json"));
@@ -52,9 +65,12 @@ public class TransactionsTest {
 
     @Test
     public void statsTxs_basicResponse_test() {
+        String endpoint = "stats/txs";
+        String url = this.host + endpoint;
+
         given().
         when().
-            get("https://explorer.cardano.org/api/stats/txs").
+            get(url).
         then().
             assertThat().
             statusCode(200).
@@ -62,10 +78,13 @@ public class TransactionsTest {
             contentType(ContentType.JSON);
     }
 
-    @Test
+    @Test(dependsOnMethods = "statsTxs_basicResponse_test")
     public void statsTxs_validSchema_test() {
+        String endpoint = "stats/txs";
+        String url = this.host + endpoint;
+
         given().
-            get("https://explorer.cardano.org/api/stats/txs")
+            get(url)
         .then()
             .assertThat()
             .body(matchesJsonSchemaInClasspath("valid-stats-txs-schema.json"));

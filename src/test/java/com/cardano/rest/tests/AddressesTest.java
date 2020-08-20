@@ -1,18 +1,22 @@
 package com.cardano.rest.tests;
 
 import io.restassured.http.ContentType;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 
-public class AddressesTest {
+public class AddressesTest extends BaseTest {
 
-    @Test
-    public void addressesSummaryAddress_basicResponse_test() {
+    @Test(dataProvider = "addresses", dataProviderClass = DataStore.class)
+    public void addressesSummaryAddress_basicResponse_test(String address) {
+        String endpoint = String.format("addresses/summary/%s", address);
+        String url = this.host + endpoint;
+
         given().
         when().
-            get("https://explorer.cardano.org/api/addresses/summary/Ae2tdPwUPEZK72eZZqulakkhaUfTCcoaGepvQP718aYBczw5uZmp47h1k14").
+            get(url).
         then().
             assertThat().
             statusCode(200).
@@ -20,20 +24,27 @@ public class AddressesTest {
             contentType(ContentType.JSON);
     }
 
-    @Test
-    public void addressesSummaryAddress_validSchema_test() {
+    @Test(dataProvider = "addresses", dataProviderClass = DataStore.class,
+            dependsOnMethods = "addressesSummaryAddress_basicResponse_test")
+    public void addressesSummaryAddress_validSchema_test(String address) {
+        String endpoint = String.format("addresses/summary/%s", address);
+        String url = this.host + endpoint;
+
         given().
-            get("https://explorer.cardano.org/api/addresses/summary/Ae2tdPwUPEZK72eZZqulakkhaUfTCcoaGepvQP718aYBczw5uZmp47h1k14")
-        .then()
-            .assertThat()
-            .body(matchesJsonSchemaInClasspath("valid-addresses-summary-address-schema.json"));
+            get(url).
+        then().
+            assertThat().
+            body(matchesJsonSchemaInClasspath("valid-addresses-summary-address-schema.json"));
     }
 
-    @Test
-    public void blockBlockhashAddressAddress_basicResponse_test() {
+    @Test(dataProvider = "addresses-blockHashes", dataProviderClass = DataStore.class)
+    public void blockBlockhashAddressAddress_basicResponse_test(String address, String blockHash) {
+        String endpoint = String.format("block/%s/address/%s", blockHash, address);
+        String url = this.host + endpoint;
+
         given().
         when().
-            get("https://explorer.cardano.org/api/block/3c89f7d9ff6c06468e32fd916d153b033264f780e11fca7750cb85f56d4f31d0/address/Ae2tdPwUPEZK72eZZqulakkhaUfTCcoaGepvQP718aYBczw5uZmp47h1k14").
+            get(url).
         then().
             assertThat().
             statusCode(200).
@@ -41,12 +52,16 @@ public class AddressesTest {
             contentType(ContentType.JSON);
     }
 
-    @Test
-    public void blockBlockhashAddressAddress_validSchema_test() {
+    @Test(dataProvider = "addresses-blockHashes", dataProviderClass = DataStore.class,
+            dependsOnMethods = "blockBlockhashAddressAddress_basicResponse_test")
+    public void blockBlockhashAddressAddress_validSchema_test(String address, String blockHash) {
+        String endpoint = String.format("block/%s/address/%s", blockHash, address);
+        String url = this.host + endpoint;
+
         given().
-            get("https://explorer.cardano.org/api/block/3c89f7d9ff6c06468e32fd916d153b033264f780e11fca7750cb85f56d4f31d0/address/Ae2tdPwUPEZK72eZZqulakkhaUfTCcoaGepvQP718aYBczw5uZmp47h1k14")
-        .then()
-            .assertThat()
-            .body(matchesJsonSchemaInClasspath("valid-block-blockhash-address-address-schema.json"));
+                get(url).
+        then().
+            assertThat().
+            body(matchesJsonSchemaInClasspath("valid-block-blockhash-address-address-schema.json"));
     }
 }

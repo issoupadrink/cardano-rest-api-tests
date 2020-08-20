@@ -3,7 +3,7 @@
   "type": "object",
   "properties": {
     "Right": {
-      "type": "object",
+      "type": "array",
       "properties": {
         "cteId": {
           "type": "string"
