@@ -12,7 +12,7 @@ public class DataStore {
 
     @DataProvider(name = "blockHashes")
     public Object[][] getBlockHashes(){
-        return new Object[][] {{"3c89f7d9ff6c06468e32fd916d153b033264f780e11fca7750cb85f56d4f31d0"}};
+        return new Object[][] {{"534097d96a5ef35601ac5b5ea65d168858553cda7edd3f0e004c4129ee6c3172"}};
     }
 
     @DataProvider(name = "addresses-blockHashes")

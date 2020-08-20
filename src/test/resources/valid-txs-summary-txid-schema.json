@@ -27,7 +27,7 @@
           "type": "string"
         },
         "ctsRelayedBy": {
-          "type": "string"
+          "type": "string, null"
         },
         "ctsTotalInput": {
           "type": "object",

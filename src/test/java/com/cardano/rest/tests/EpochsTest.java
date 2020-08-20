@@ -25,8 +25,7 @@ public class EpochsTest extends BaseTest {
             contentType(ContentType.JSON);
     }
 
-    @Test(dataProvider = "epochs", dataProviderClass = DataStore.class,
-            dependsOnMethods = "epochsEpoch_basicResponse_test")
+    @Test(dataProvider = "epochs", dataProviderClass = DataStore.class, dependsOnMethods = "epochsEpoch_basicResponse_test")
     @Description("epochs/{epoch} matches expected JSON schema")
     public void epochsEpoch_validSchema_test(String epoch) {
         String endpoint = String.format("epochs/%s", epoch);
@@ -55,8 +54,7 @@ public class EpochsTest extends BaseTest {
             contentType(ContentType.JSON);
     }
 
-    @Test(dataProvider = "epochs-slots", dataProviderClass = DataStore.class,
-            dependsOnMethods = "epochsEpochSlot_basicResponse_test")
+    @Test(dataProvider = "epochs-slots", dataProviderClass = DataStore.class, dependsOnMethods = "epochsEpochSlot_basicResponse_test")
     @Description("epochs/{epoch}/{slot} matches expected JSON schema")
     public void epochsEpochSlot_validSchema_test(String epoch, String slot) {
         String endpoint = String.format("epochs/%s/%s", epoch, slot);

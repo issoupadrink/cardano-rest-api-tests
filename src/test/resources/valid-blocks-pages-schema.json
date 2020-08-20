@@ -302,11 +302,5 @@
         }
       ]
     }
-  },
-  "required": [
-    "$schema",
-    "type",
-    "properties",
-    "required"
-  ]
+  }
 }

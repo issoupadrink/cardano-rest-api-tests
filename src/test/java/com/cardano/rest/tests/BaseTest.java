@@ -10,8 +10,8 @@ public class BaseTest {
     public void setupTests() {
         this.host = "https://explorer.cardano.org/api/";
 
-        if (System.getProperty("HUB_HOST") != null){
-            this.host = System.getProperty("HUB_HOST");
+        if (System.getProperty("HOST") != null){
+            this.host = System.getProperty("HOST");
         }
     }
 }

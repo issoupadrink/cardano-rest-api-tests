@@ -83,8 +83,7 @@ public class BlocksTest extends BaseTest {
             contentType(ContentType.JSON);
     }
 
-    @Test(dataProvider = "blockHashes", dataProviderClass = DataStore.class,
-            dependsOnMethods = "blocksSummaryBlockhash_basicResponse_test")
+    @Test(dataProvider = "blockHashes", dataProviderClass = DataStore.class, dependsOnMethods = "blocksSummaryBlockhash_basicResponse_test")
     @Description("blocks/summary/{blockHash} matches expected JSON schema")
     public void blocksSummaryBlockhash_validSchema_test(String blockHash) {
         String endpoint = String.format("blocks/summary/%s", blockHash);
@@ -113,8 +112,7 @@ public class BlocksTest extends BaseTest {
             contentType(ContentType.JSON);
     }
 
-    @Test(dataProvider = "blockHashes", dataProviderClass = DataStore.class,
-            dependsOnMethods = "blocksTxsBlockhash_basicResponse_test")
+    @Test(dataProvider = "blockHashes", dataProviderClass = DataStore.class, dependsOnMethods = "blocksTxsBlockhash_basicResponse_test")
     @Description("blocks/txs/{blockHash} matches expected JSON schema")
     public void blocksTxsBlockhash_validSchema_test(String blockHash) {
         String endpoint = String.format("blocks/txs/%s", blockHash);

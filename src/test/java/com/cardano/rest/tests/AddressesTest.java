@@ -26,8 +26,7 @@ public class AddressesTest extends BaseTest {
             contentType(ContentType.JSON);
     }
 
-    @Test(dataProvider = "addresses", dataProviderClass = DataStore.class,
-            dependsOnMethods = "addressesSummaryAddress_basicResponse_test")
+    @Test(dataProvider = "addresses", dataProviderClass = DataStore.class, dependsOnMethods = "addressesSummaryAddress_basicResponse_test")
     @Description("addresses/summary/{address} matches expected JSON schema")
     public void addressesSummaryAddress_validSchema_test(String address) {
         String endpoint = String.format("addresses/summary/%s", address);
@@ -56,8 +55,7 @@ public class AddressesTest extends BaseTest {
             contentType(ContentType.JSON);
     }
 
-    @Test(dataProvider = "addresses-blockHashes", dataProviderClass = DataStore.class,
-            dependsOnMethods = "blockBlockhashAddressAddress_basicResponse_test")
+    @Test(dataProvider = "addresses-blockHashes", dataProviderClass = DataStore.class, dependsOnMethods = "blockBlockhashAddressAddress_basicResponse_test")
     @Description("block/{blockHash}/address/{address} matches expected JSON schema")
     public void blockBlockhashAddressAddress_validSchema_test(String address, String blockHash) {
         String endpoint = String.format("block/%s/address/%s", blockHash, address);

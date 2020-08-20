@@ -54,8 +54,7 @@ public class TransactionsTest extends BaseTest {
             contentType(ContentType.JSON);
     }
 
-    @Test(dataProvider = "txs", dataProviderClass = DataStore.class,
-            dependsOnMethods = "txsSummaryTxid_basicResponse_test")
+    @Test(dataProvider = "txs", dataProviderClass = DataStore.class, dependsOnMethods = "txsSummaryTxid_basicResponse_test")
     @Description("txs/summary/{tx} matches expected JSON schema")
     public void txsSummaryTxid_validSchema_test(String tx) {
         String endpoint = String.format("txs/summary/%s", tx);
