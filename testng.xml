@@ -1,9 +1,29 @@
 <?xml version = "1.0" encoding = "UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="read">
+<suite name="read" parallel="tests">
+    <test name="addresses">
+        <classes>
+            <class name="com.cardano.rest.tests.AddressesTest" />
+        </classes>
+    </test>
     <test name="blocks">
         <classes>
-            <class name="com.cardano.rest.tests.blocks.BlocksPagesTest" />
+            <class name="com.cardano.rest.tests.BlocksTest" />
+        </classes>
+    </test>
+    <test name="epochs">
+        <classes>
+            <class name="com.cardano.rest.tests.EpochsTest" />
+        </classes>
+    </test>
+    <test name="genesis">
+        <classes>
+            <class name="com.cardano.rest.tests.GenesisTest" />
+        </classes>
+    </test>
+    <test name="transactions">
+        <classes>
+            <class name="com.cardano.rest.tests.TransactionsTest" />
         </classes>
     </test>
 </suite>
