@@ -5,7 +5,7 @@ import io.gatling.core.structure.ScenarioBuilder
 import io.gatling.http.Predef._
 import io.gatling.http.protocol.HttpProtocolBuilder
 
-class AddressSimulation extends Simulation {
+class AddressesSimulation extends Simulation {
   val httpConf: HttpProtocolBuilder = http.baseUrl("https://explorer.cardano.org/api/")
     .header("Accept", "application/json")
 

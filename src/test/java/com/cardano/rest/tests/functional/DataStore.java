@@ -1,4 +1,4 @@
-package com.cardano.rest.tests;
+package com.cardano.rest.tests.functional;
 
 import org.testng.annotations.DataProvider;
 

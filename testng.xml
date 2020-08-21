@@ -3,27 +3,27 @@
 <suite name="read" parallel="tests">
     <test name="addresses">
         <classes>
-            <class name="com.cardano.rest.tests.AddressesTest" />
+            <class name="com.cardano.rest.tests.functional.AddressesTest" />
         </classes>
     </test>
     <test name="blocks">
         <classes>
-            <class name="com.cardano.rest.tests.BlocksTest" />
+            <class name="com.cardano.rest.tests.functional.BlocksTest" />
         </classes>
     </test>
     <test name="epochs">
         <classes>
-            <class name="com.cardano.rest.tests.EpochsTest" />
+            <class name="com.cardano.rest.tests.functional.EpochsTest" />
         </classes>
     </test>
     <test name="genesis">
         <classes>
-            <class name="com.cardano.rest.tests.GenesisTest" />
+            <class name="com.cardano.rest.tests.functional.GenesisTest" />
         </classes>
     </test>
     <test name="transactions">
         <classes>
-            <class name="com.cardano.rest.tests.TransactionsTest" />
+            <class name="com.cardano.rest.tests.functional.TransactionsTest" />
         </classes>
     </test>
 </suite>

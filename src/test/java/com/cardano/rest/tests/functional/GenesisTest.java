@@ -1,4 +1,4 @@
-package com.cardano.rest.tests;
+package com.cardano.rest.tests.functional;
 
 import io.qameta.allure.Description;
 import io.restassured.http.ContentType;
