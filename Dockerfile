@@ -1,9 +1,23 @@
-FROM maven:3.6.3-jdk-8
+FROM maven:3.6.3-jdk-14 AS build
 
-COPY ./ ./
+ENV HOME=/home/usr/app
 
-RUN mvn clean package
+RUN mkdir -p $HOME
 
-RUN mvn clean test -DsuiteXmlFile=testng.xml
+WORKDIR $HOME
 
-CP ./target/allure-results ./reports
+ADD pom.xml $HOME
+
+RUN ["/usr/local/bin/mvn-entrypoint.sh", "mvn", "verify", "clean", "--fail-never"]
+
+ADD . $HOME
+
+RUN mvn test -Dsurefire.suiteXmlFiles=testng.xml
+
+CMD ls -l target
+
+#FROM ubuntu:latest
+#RUN apt-get update && apt-get install -y allure
+#COPY --from=build ./target/allure-results/ .
+#EXPOSE 8080
+#CMD ["allure", "serve", "target/allure-results", "-p", "8080"]

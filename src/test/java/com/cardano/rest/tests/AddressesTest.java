@@ -2,7 +2,6 @@ package com.cardano.rest.tests;
 
 import io.qameta.allure.Description;
 import io.restassured.http.ContentType;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
