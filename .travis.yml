@@ -1,0 +1,4 @@
+language: scala
+sudo: false
+
+script: "mvn gatling:test -Dhost=https://explorer.cardano-testnet.iohkdev.io/api/"
