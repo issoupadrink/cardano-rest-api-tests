@@ -7,10 +7,11 @@ import io.gatling.http.protocol.HttpProtocolBuilder
 
 
 class BlocksSimulation extends Simulation {
-  val httpConf: HttpProtocolBuilder = http.baseUrl("https://explorer.cardano.org/api/")
+  val httpConf: HttpProtocolBuilder = http.baseUrl("https://explorer.cardano-testnet.iohkdev.io/api/")
     .header("Accept", "application/json")
+    .proxy(Proxy("localhost", 8888))
 
-  val scn: ScenarioBuilder = scenario("Genesis Summary Scenario").repeat(10) {
+  val scn: ScenarioBuilder = scenario("Genesis Summary Scenario").repeat(1) {
     exec(
       http("Genesis Summary")
         .get("genesis/summary")

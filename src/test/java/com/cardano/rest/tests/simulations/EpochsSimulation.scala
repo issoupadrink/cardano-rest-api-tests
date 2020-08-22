@@ -7,11 +7,14 @@ import io.gatling.http.protocol.HttpProtocolBuilder
 
 
 class EpochsSimulation extends Simulation {
-  val httpConf: HttpProtocolBuilder = http.baseUrl("https://explorer.cardano.org/api/")
+  val nbRuns: String = System.getProperty("runs", "10")
+  val nbUsers: Int = Integer.getInteger("users", 1)
+
+  val httpConf: HttpProtocolBuilder = http.baseUrl("https://explorer.cardano-testnet.iohkdev.io/api/")
     .header("Accept", "application/json")
     .proxy(Proxy("localhost", 8888))
 
-  val scn: ScenarioBuilder = scenario("Genesis Summary Scenario").repeat(10) {
+  val scn: ScenarioBuilder = scenario("Genesis Summary Scenario").repeat(nbRuns) {
     exec(
       http("Genesis Summary")
         .get("genesis/summary")
@@ -20,6 +23,6 @@ class EpochsSimulation extends Simulation {
   }
 
   setUp(
-    scn.inject(atOnceUsers(1))
+    scn.inject(atOnceUsers(nbUsers))
   ).protocols(httpConf)
 }
