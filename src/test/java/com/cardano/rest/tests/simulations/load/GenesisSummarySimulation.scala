@@ -35,8 +35,4 @@ class GenesisSummarySimulation extends Simulation {
       rampUsers(5) during (15 second)
     ).protocols(httpConf)
   ).maxDuration(30 seconds)
-    .assertions(
-      global.responseTime.percentile(90).lt(2),
-      global.successfulRequests.percent.gt(95)
-    )
 }
