@@ -1,4 +1,16 @@
 language: scala
 sudo: false
+script: mvn gatling:test -Dhost=https://explorer.cardano-testnet.iohkdev.io/api/
 
-script: "mvn gatling:test -Dhost=https://explorer.cardano-testnet.iohkdev.io/api/"
+deploy:
+  provider: s3
+  access_key_id: AKIAJS2PN6G3TY4QSZXQ
+  secret_access_key:
+    secure: vyHPBKmT/s45Ym8WaViDIvTdseEjhmukW6/FliAE2cTdJSZK5bn1Vo/mPXx5IUVnfoMpDpMJZtB5CXgQznOzb58GjiA9mQZVaWPhA1wRWWgiOZ1dhN+wZ09FDWNezUkOJtcpemxbKA70iK1TuIvJUatqDNL5nghLE1go8nYJWEr3drxT6DtGhCWMihD5hZ39iAB1hUBKu0ABx67EVDaCU8KNggDNyU1517kNuauhSB1qcIXGtnMHu6gm0mW4K4ltsthy+EVHGUWQ9BuVIeELW0iPS4SL7pV4r+wAXZClIuJivFCphPm/yN/zi3Up3x3LXJ5YX/xE+uQMufSujsvURwneLvlAhRm+AtVpvuY7GsQWE/KUTPm12UZ3MKP6n6Zj6uG2J98ZS3EETk5wQY//PmztRJnCnRNKfATv5MBNhyBbo+5yr7pzZ6DbFZEMMlpnGpQUrb1AlMr68qD9/Y0ckguGQd8K+6KdmpBLNfIS0/ITDWnxUMkham/tPyVD2HWRuYfWc0iyZY59km4WtD/5xZowz3ffma+yh09N81Q90GLumpboaFqhBR+KsSC+6pXgTiq0PL8T5a5fZNXNvkEGg5EIRWbX23G2v0pyMLut1SjqslXJ7XO/06w6dkKO+wbn4wNs3Whw3GFIJtk4t0Ye7L8CdKFdBa1ZjSiqUIBtxQk=
+  bucket: 'cardano-rest-gatling-reports'
+  local-dir: target/gatling/
+  upload-dir: gatling/
+  acl: 'public_read'
+  on:
+    repo: issoupadrink/cardano-rest-tests
+  skip_cleanup: true
