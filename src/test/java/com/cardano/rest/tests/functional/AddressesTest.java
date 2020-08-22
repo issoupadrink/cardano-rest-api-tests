@@ -35,7 +35,7 @@ public class AddressesTest extends BaseTest {
             get(url).
         then().
             assertThat().
-            body(matchesJsonSchemaInClasspath("valid-addresses-summary-address-schema.json"));
+            body(matchesJsonSchemaInClasspath("schemas/valid-addresses-summary-address-schema.json"));
     }
 
     @Test(dataProvider = "addresses-blockHashes", dataProviderClass = DataStore.class)
@@ -64,6 +64,6 @@ public class AddressesTest extends BaseTest {
                 get(url).
         then().
             assertThat().
-            body(matchesJsonSchemaInClasspath("valid-block-blockhash-address-address-schema.json"));
+            body(matchesJsonSchemaInClasspath("schemas/valid-block-blockhash-address-address-schema.json"));
     }
 }

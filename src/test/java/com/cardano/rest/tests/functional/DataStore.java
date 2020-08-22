@@ -29,16 +29,14 @@ public class DataStore {
     @DataProvider(name = "epochs")
     public Object[][] getEpochs(){
         return new Object[][] {
-                {"0"},
-                {"211"}
+                {"0"}
         };
     }
 
     @DataProvider(name = "epochs-slots")
     public Object[][] getEpochsSlots(){
         return new Object[][] {
-                {"0", "0"},
-                {"211", "20000"}
+                {"0", "0"}
         };
     }
 

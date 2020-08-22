@@ -94,6 +94,9 @@
                 <configuration>
                     <source>${java.version}</source>
                     <target>${java.version}</target>
+                    <fork>true</fork>
+                    <meminitial>1024m</meminitial>
+                    <maxmem>4096m</maxmem>
                 </configuration>
             </plugin>
 
@@ -149,6 +152,7 @@
                     <execution>
                         <phase>test</phase>
                         <configuration>
+                            <runMultipleSimulations>True</runMultipleSimulations>
                             <excludes>
                                 <exclude>advanced/*.scala</exclude>
                             </excludes>

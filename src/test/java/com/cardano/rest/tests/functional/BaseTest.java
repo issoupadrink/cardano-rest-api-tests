@@ -8,7 +8,7 @@ public class BaseTest {
 
     @BeforeTest
     public void setupTests() {
-        this.host = "https://explorer.cardano.org/api/";
+        this.host = "https://explorer.cardano-testnet.iohkdev.io/api/";
 
         if (System.getProperty("HOST") != null){
             this.host = System.getProperty("HOST");

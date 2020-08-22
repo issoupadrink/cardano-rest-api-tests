@@ -35,7 +35,7 @@ public class GenesisTest extends BaseTest {
             get(url)
         .then()
             .assertThat()
-            .body(matchesJsonSchemaInClasspath("valid-genesis-summary-schema.json"));
+            .body(matchesJsonSchemaInClasspath("schemas/valid-genesis-summary-schema.json"));
     }
 
     @Test
@@ -64,7 +64,7 @@ public class GenesisTest extends BaseTest {
             get(url)
         .then()
             .assertThat()
-            .body(matchesJsonSchemaInClasspath("valid-genesis-address-pages-total-schema.json"));
+            .body(matchesJsonSchemaInClasspath("schemas/valid-genesis-address-pages-total-schema.json"));
     }
 
     @Test
@@ -93,7 +93,7 @@ public class GenesisTest extends BaseTest {
             get(url)
         .then()
             .assertThat()
-            .body(matchesJsonSchemaInClasspath("valid-genesis-address-schema.json"));
+            .body(matchesJsonSchemaInClasspath("schemas/valid-genesis-address-schema.json"));
     }
 
     @Test
@@ -122,6 +122,6 @@ public class GenesisTest extends BaseTest {
             get(url)
         .then()
             .assertThat()
-            .body(matchesJsonSchemaInClasspath("valid-supply-ada-schema.json"));
+            .body(matchesJsonSchemaInClasspath("schemas/valid-supply-ada-schema.json"));
     }
 }

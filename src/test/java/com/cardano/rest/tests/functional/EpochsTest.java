@@ -35,7 +35,7 @@ public class EpochsTest extends BaseTest {
             get(url)
         .then()
             .assertThat()
-            .body(matchesJsonSchemaInClasspath("valid-epochs-epoch-schema.json"));
+            .body(matchesJsonSchemaInClasspath("schemas/valid-epochs-epoch-schema.json"));
     }
 
     @Test(dataProvider = "epochs-slots", dataProviderClass = DataStore.class)
@@ -64,6 +64,6 @@ public class EpochsTest extends BaseTest {
             get(url)
         .then()
             .assertThat()
-            .body(matchesJsonSchemaInClasspath("valid-epochs-epoch-slot-schema.json"));
+            .body(matchesJsonSchemaInClasspath("schemas/valid-epochs-epoch-slot-schema.json"));
     }
 }

@@ -35,7 +35,7 @@ public class BlocksTest extends BaseTest {
             get(url)
         .then()
         .assertThat()
-            .body(matchesJsonSchemaInClasspath("valid-blocks-pages-schema.json"));
+            .body(matchesJsonSchemaInClasspath("schemas/valid-blocks-pages-schema.json"));
     }
 
     @Test
@@ -64,7 +64,7 @@ public class BlocksTest extends BaseTest {
             get(url)
         .then()
             .assertThat()
-            .body(matchesJsonSchemaInClasspath("valid-blocks-pages-total-schema.json"));
+            .body(matchesJsonSchemaInClasspath("schemas/valid-blocks-pages-total-schema.json"));
     }
 
     @Test(dataProvider = "blockHashes", dataProviderClass = DataStore.class)
@@ -93,7 +93,7 @@ public class BlocksTest extends BaseTest {
             get(url)
         .then()
             .assertThat()
-            .body(matchesJsonSchemaInClasspath("valid-blocks-summary-blockhash-schema.json"));
+            .body(matchesJsonSchemaInClasspath("schemas/valid-blocks-summary-blockhash-schema.json"));
     }
 
     @Test(dataProvider = "blockHashes", dataProviderClass = DataStore.class)
@@ -122,6 +122,6 @@ public class BlocksTest extends BaseTest {
             get(url)
         .then()
             .assertThat()
-            .body(matchesJsonSchemaInClasspath("valid-blocks-txs-blockhash-schema.json"));
+            .body(matchesJsonSchemaInClasspath("schemas/valid-blocks-txs-blockhash-schema.json"));
     }
 }

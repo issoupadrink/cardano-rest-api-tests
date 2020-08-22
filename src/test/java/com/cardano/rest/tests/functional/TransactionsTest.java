@@ -35,7 +35,7 @@ public class TransactionsTest extends BaseTest {
             get(url)
         .then()
             .assertThat()
-            .body(matchesJsonSchemaInClasspath("valid-txs-last-schema.json"));
+            .body(matchesJsonSchemaInClasspath("schemas/valid-txs-last-schema.json"));
     }
 
     @Test(dataProvider = "txs", dataProviderClass = DataStore.class)
@@ -64,7 +64,7 @@ public class TransactionsTest extends BaseTest {
             get(url)
         .then()
             .assertThat()
-            .body(matchesJsonSchemaInClasspath("valid-txs-summary-txid-schema.json"));
+            .body(matchesJsonSchemaInClasspath("schemas/valid-txs-summary-txid-schema.json"));
     }
 
     @Test
@@ -93,6 +93,6 @@ public class TransactionsTest extends BaseTest {
             get(url)
         .then()
             .assertThat()
-            .body(matchesJsonSchemaInClasspath("valid-stats-txs-schema.json"));
+            .body(matchesJsonSchemaInClasspath("schemas/valid-stats-txs-schema.json"));
     }
 }
