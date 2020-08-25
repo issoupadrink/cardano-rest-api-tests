@@ -1,4 +1,4 @@
-package com.cardano.rest.tests.simulations.load
+package com.cardano.rest.tests.simulations.performance.genesis
 
 import io.gatling.core.Predef._
 import io.gatling.core.structure.{ChainBuilder, ScenarioBuilder}
