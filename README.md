@@ -31,3 +31,10 @@ sudo tar -zxvf allure-2.6.0.tgz -C /opt/
 sudo ln -s /opt/allure-2.6.0/bin/allure /usr/bin/allure  
 allure --version
 ```
+
+## Docker
+
+You can run the functional tests and serve its Allure report by running:
+```
+docker-compose up
+```
