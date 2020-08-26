@@ -17,7 +17,7 @@ mvn gatling:test -Dhost={HostName} -Dgatling.SimulationClass={PathToTestClass}
 
 ## Reports
 
-To access the functional test report, this command will set up allure reports at http://localhost:8081
+To access the functional test report, this command will set up allure reports at http://localhost:8081:
 ```
 allure serve target/allure-results -p 8081
 ```
