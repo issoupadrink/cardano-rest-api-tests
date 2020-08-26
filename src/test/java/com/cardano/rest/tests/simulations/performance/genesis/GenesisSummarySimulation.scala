@@ -22,7 +22,7 @@ class GenesisSummarySimulation extends Simulation {
     )
   }
 
-  val scn: ScenarioBuilder = scenario("Genesis Summary Scenario")
+  val scn: ScenarioBuilder = scenario("performance test: genesis/summary")
     .forever(
       exec(getGenesisSummary)
         .pause(5 seconds)

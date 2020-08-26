@@ -1,4 +1,4 @@
-package com.cardano.rest.tests.simulations.performance.transactions
+package com.cardano.rest.tests.simulations.performance.epochs
 
 import io.gatling.core.Predef._
 import io.gatling.core.structure.{ChainBuilder, ScenarioBuilder}
@@ -8,23 +8,25 @@ import io.gatling.http.protocol.HttpProtocolBuilder
 import scala.concurrent.duration.DurationInt
 
 
-class StatsTxsSimulation extends Simulation {
+class EpochsEpochSlotsSlotSimulation extends Simulation {
   val host: String = System.getProperty("host")
+  val epoch = "1"
+  val slot = "1"
 
   val httpConf: HttpProtocolBuilder = http.baseUrl(host)
     .header("Accept", "application/json")
 
-  def getSupplyAda: ChainBuilder = {
+  def getEpochsEpochSlotsSlot: ChainBuilder = {
     exec (
-      http("Get stats/txs")
-        .get("stats/txs")
+      http("Get epochs/{epoch}/slots/{slot}")
+        .get(String.format("epochs/%s/slots/%s", epoch, slot))
         .check(status.is(200))
     )
   }
 
-  val scn: ScenarioBuilder = scenario("performance test: stats/txs")
+  val scn: ScenarioBuilder = scenario("performance test: epochs/{epoch}/slots/{slot}")
     .forever(
-      exec(getSupplyAda)
+      exec(getEpochsEpochSlotsSlot)
         .pause(5 seconds)
     )
 
