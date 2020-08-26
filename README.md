@@ -2,7 +2,7 @@
 
 Run functional tests: 
 ```
-mvn clean test -Dsurefire.suiteXmlFiles=/path/to/testng.xml
+mvn clean test -Dsurefire.suiteXmlFiles=testng.xml
 ```
 
 Run all performance tests:
