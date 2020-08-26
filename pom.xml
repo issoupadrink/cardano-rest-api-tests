@@ -148,14 +148,31 @@
                 <groupId>io.gatling</groupId>
                 <artifactId>gatling-maven-plugin</artifactId>
                 <version>${gatling-maven-plugin.version}</version>
+                <configuration>
+                    <runMultipleSimulations>True</runMultipleSimulations>
+                </configuration>
                 <executions>
                     <execution>
                         <phase>test</phase>
                         <configuration>
                             <runMultipleSimulations>True</runMultipleSimulations>
-                            <excludes>
-                                <exclude>advanced/*.scala</exclude>
-                            </excludes>
+                            <includes>
+                                <param>com.cardano.rest.tests.simulations.performance.addresses.AddressesSummaryAddressSimulation</param>
+                                <param>com.cardano.rest.tests.simulations.performance.addresses.BlockBlockhashAddressAddressSimulation</param>
+                                <param>com.cardano.rest.tests.simulations.performance.blocks.BlocksPagesSimulation</param>
+                                <param>com.cardano.rest.tests.simulations.performance.blocks.BlocksPagesTotalSimulation</param>
+                                <param>com.cardano.rest.tests.simulations.performance.blocks.BlocksSummaryBlockhashSimulation</param>
+                                <param>com.cardano.rest.tests.simulations.performance.blocks.BlocksTxsBlockhashSimulation</param>
+                                <param>com.cardano.rest.tests.simulations.performance.epochs.EpochsEpochSimulation</param>
+                                <param>com.cardano.rest.tests.simulations.performance.epochs.EpochsEpochSlotsSlotSimulation</param>
+                                <param>com.cardano.rest.tests.simulations.performance.genesis.GenesisAddressSimulation</param>
+                                <param>com.cardano.rest.tests.simulations.performance.genesis.GenesisSummarySimulation</param>
+                                <param>com.cardano.rest.tests.simulations.performance.genesis.SupplyAdaSimulation</param>
+                                <param>com.cardano.rest.tests.simulations.performance.genesis.GenesisAddressPagesTotalSimulation</param>
+                                <param>com.cardano.rest.tests.simulations.performance.transactions.StatsTxsSimulation</param>
+                                <param>com.cardano.rest.tests.simulations.performance.transactions.TxsLastSimulation</param>
+                                <param>com.cardano.rest.tests.simulations.performance.transactions.TxsSummaryTxSimulation</param>
+                            </includes>
                         </configuration>
                     </execution>
                 </executions>
