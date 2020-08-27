@@ -17,9 +17,9 @@ mvn gatling:test -Dhost={HostName} -Dgatling.SimulationClass={PathToTestClass}
 
 ## Reports
 
-To access the functional test report, this command will set up allure reports at http://localhost:8081:
+To access the functional test report, this command will set up allure reports at http://localhost:8080:
 ```
-allure serve target/allure-results -p 8081
+allure serve target/allure-results -p 8080
 ```
 
 Gatling reports are stored in `/target/gatling/{GatlingTestRun}/index.html`
@@ -34,7 +34,38 @@ allure --version
 
 ## Docker
 
-You can run the functional tests and serve its Allure report by running:
+You can run the tests by running:
 ```
 docker-compose up
 ```
+
+Allure report can be found here:
+```
+http://localhost/
+```
+
+Performance reports can be found here:
+```
+addresses/summary/{address} =>         http://localhost/gatling/addressessummaryaddresssimulation	
+block/{blockhash}/address/{address} => http://localhost/gatling/blockblockhashaddressaddresssimulation	
+
+blocks/pages =>                        http://localhost/gatling/blockspagessimulation			
+blocks/pages/total =>                  http://localhost/gatling/blockspagestotalsimulation		
+blocks/summary/{blockhash} =>          http://localhost/gatling/blockssummaryblockhashsimulation	
+blocks/txs/{blockhash} =>              http://localhost/gatling/blockstxsblockhashsimulation	
+
+epochs/{epoch} =>                      http://localhost/gatling/epochsepochsimulation			
+epochs/{epoch}/slots/{slot} =>         http://localhost/gatling/epochsepochslotsslotsimulation		
+
+genesis/address =>                     http://localhost/gatling/genesisaddresssimulation
+genesis/summary =>                     http://localhost/gatling/genesissummarysimulation
+genesis/address/pages/total            http://localhost/gatling/genesisaddresspagestotalsimulation
+supply/ada =>                          http://localhost/gatling/supplyadasimulation
+
+txs/summary/{tx} =>                    http://localhost/gatling/txssummarytxsimulation
+txs/last =>                            http://localhost/gatling/txslastsimulation
+stats/txs =>                           http://localhost/gatling/statstxssimulation
+
+```
+
+
