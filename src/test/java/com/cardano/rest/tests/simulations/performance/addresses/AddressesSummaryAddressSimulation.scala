@@ -1,20 +1,37 @@
 package com.cardano.rest.tests.simulations.performance.addresses
 
+
 import java.util.Properties
 
-import com.typesafe.config.ConfigFactory
+import com.typesafe.config.{Config, ConfigFactory}
 import io.gatling.core.Predef._
 import io.gatling.core.structure.{ChainBuilder, ScenarioBuilder}
 import io.gatling.http.Predef._
 import io.gatling.http.protocol.HttpProtocolBuilder
+import io.restassured.internal.common.assertion.AssertionSupport.properties
 
 import scala.concurrent.duration.DurationInt
 import scala.io.Source
 
 
 class AddressesSummaryAddressSimulation extends Simulation {
-  val conf = ConfigFactory.load()
-  val host = conf.getString("host")
+
+  var properties : Properties = null
+  val url = getClass.getResource("/config.properties")
+  if (url != null) {
+    val source = Source.fromURL(url)
+
+    properties = new Properties()
+    properties.load(source.bufferedReader())
+  }
+
+  val host: String = properties.getProperty("host")
+  val pauseBetweenTests: Int = properties.getProperty("pauseBetweenTests").toInt
+  val pauseBetweenRequests: Int = properties.getProperty("pauseBetweenRequests").toInt
+  val startingUsers: Int = properties.getProperty("startingUsers").toInt
+  val maximumUsers: Int = properties.getProperty("maximumUsers").toInt
+  val timeFrameToIncreaseUsers: Int = properties.getProperty("timeFrameToIncreaseUsers").toInt
+  val maxTestDuration: Int = properties.getProperty("maxTestDuration").toInt
 
   // Set-up test data
   val address = "Ae2tdPwUPEZK72eZZqulakkhaUfTCcoaGepvQP718aYBczw5uZmp47h1k14"
@@ -36,15 +53,14 @@ class AddressesSummaryAddressSimulation extends Simulation {
   val scn: ScenarioBuilder = scenario("performance test: addresses/summary/{address}")
     .forever(
       exec(getAddressesSummaryAddress)
-        .pause(5 seconds)
+        .pause(pauseBetweenRequests seconds)
     )
 
-  // Run the test
   setUp(
     scn.inject(
-      nothingFor(5 seconds),
-      atOnceUsers(1),
-      rampUsers(5) during (15 second)
+      nothingFor(pauseBetweenTests seconds),
+      atOnceUsers(startingUsers),
+      rampUsers(maximumUsers) during (timeFrameToIncreaseUsers seconds)
     ).protocols(httpConf)
-  ).maxDuration(30 seconds)
+  ).maxDuration(maxTestDuration seconds)
 }
