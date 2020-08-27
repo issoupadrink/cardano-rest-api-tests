@@ -2,7 +2,6 @@ package com.cardano.rest.tests.simulations.performance.transactions
 
 import java.util.Properties
 
-import com.typesafe.config.{Config, ConfigFactory}
 import io.gatling.core.Predef._
 import io.gatling.core.structure.{ChainBuilder, ScenarioBuilder}
 import io.gatling.http.Predef._

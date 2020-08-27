@@ -1,8 +1,9 @@
 package com.cardano.rest.tests.simulations.performance.epochs
 
+import java.net.URL
 import java.util.Properties
 
-import com.typesafe.config.{Config, ConfigFactory}
+import com.cardano.rest.tests.DataStore
 import io.gatling.core.Predef._
 import io.gatling.core.structure.{ChainBuilder, ScenarioBuilder}
 import io.gatling.http.Predef._
@@ -14,8 +15,8 @@ import scala.io.Source
 
 class EpochsEpochSlotsSlotSimulation extends Simulation {
 
-  var properties : Properties = null
-  val url = getClass.getResource("/config.properties")
+  var properties : Properties = _
+  val url: URL = getClass.getResource("/config.properties")
   if (url != null) {
     val source = Source.fromURL(url)
 
@@ -32,8 +33,7 @@ class EpochsEpochSlotsSlotSimulation extends Simulation {
   val maxTestDuration: Int = properties.getProperty("maxTestDuration").toInt
 
 
-  val epoch = "1"
-  val slot = "1"
+  val dataStore = new DataStore
 
   val httpConf: HttpProtocolBuilder = http.baseUrl(host)
     .header("Accept", "application/json")
@@ -41,7 +41,7 @@ class EpochsEpochSlotsSlotSimulation extends Simulation {
   def getEpochsEpochSlotsSlot: ChainBuilder = {
     exec (
       http("Get epochs/{epoch}/slots/{slot}")
-        .get(String.format("epochs/%s/slots/%s", epoch, slot))
+        .get(String.format("epochs/%s/slots/%s", dataStore.getEpoch, dataStore.getSlot))
         .check(status.is(200))
     )
   }

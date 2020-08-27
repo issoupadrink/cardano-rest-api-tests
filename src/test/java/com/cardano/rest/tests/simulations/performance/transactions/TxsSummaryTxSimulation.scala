@@ -1,7 +1,9 @@
 package com.cardano.rest.tests.simulations.performance.transactions
 
+import java.net.URL
 import java.util.Properties
 
+import com.cardano.rest.tests.DataStore
 import com.typesafe.config.{Config, ConfigFactory}
 import io.gatling.core.Predef._
 import io.gatling.core.structure.{ChainBuilder, ScenarioBuilder}
@@ -14,8 +16,8 @@ import scala.io.Source
 
 class TxsSummaryTxSimulation extends Simulation {
 
-  var properties : Properties = null
-  val url = getClass.getResource("/config.properties")
+  var properties : Properties = _
+  val url: URL = getClass.getResource("/config.properties")
   if (url != null) {
     val source = Source.fromURL(url)
 
@@ -31,7 +33,7 @@ class TxsSummaryTxSimulation extends Simulation {
   val timeFrameToIncreaseUsers: Int = properties.getProperty("timeFrameToIncreaseUsers").toInt
   val maxTestDuration: Int = properties.getProperty("maxTestDuration").toInt
 
-  val tx: String = "3c89f7d9ff6c06468e32fd916d153b033264f780e11fca7750cb85f56d4f31d0"
+  val dataStore = new DataStore
 
   val httpConf: HttpProtocolBuilder = http.baseUrl(host)
     .header("Accept", "application/json")
@@ -39,7 +41,7 @@ class TxsSummaryTxSimulation extends Simulation {
   def getTxsSummaryTx: ChainBuilder = {
     exec (
       http("Get txs/summary/{tx}")
-        .get(String.format("txs/summary/%s", tx))
+        .get(String.format("txs/summary/%s", dataStore.getTransactionHash))
         .check(status.is(200))
     )
   }

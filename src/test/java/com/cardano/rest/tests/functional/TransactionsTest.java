@@ -38,10 +38,10 @@ public class TransactionsTest extends BaseTest {
             .body(matchesJsonSchemaInClasspath("schemas/valid-txs-last-schema.json"));
     }
 
-    @Test(dataProvider = "txs", dataProviderClass = DataStore.class)
+    @Test
     @Description("txs/summary/{tx} responds")
-    public void txsSummaryTxid_basicResponse_test(String tx) {
-        String endpoint = String.format("txs/summary/%s", tx);
+    public void txsSummaryTxid_basicResponse_test() {
+        String endpoint = String.format("txs/summary/%s", this.dataStore.getTransactionHash());
         String url = this.host + endpoint;
 
         given().
@@ -54,10 +54,10 @@ public class TransactionsTest extends BaseTest {
             contentType(ContentType.JSON);
     }
 
-    @Test(dataProvider = "txs", dataProviderClass = DataStore.class, dependsOnMethods = "txsSummaryTxid_basicResponse_test")
+    @Test
     @Description("txs/summary/{tx} matches expected JSON schema")
-    public void txsSummaryTxid_validSchema_test(String tx) {
-        String endpoint = String.format("txs/summary/%s", tx);
+    public void txsSummaryTxid_validSchema_test() {
+        String endpoint = String.format("txs/summary/%s", this.dataStore.getTransactionHash());
         String url = this.host + endpoint;
 
         given().

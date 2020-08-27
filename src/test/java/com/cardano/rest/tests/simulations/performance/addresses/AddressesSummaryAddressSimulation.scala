@@ -3,15 +3,15 @@ package com.cardano.rest.tests.simulations.performance.addresses
 
 import java.util.Properties
 
-import com.typesafe.config.{Config, ConfigFactory}
+import com.cardano.rest.tests.DataStore
 import io.gatling.core.Predef._
 import io.gatling.core.structure.{ChainBuilder, ScenarioBuilder}
 import io.gatling.http.Predef._
 import io.gatling.http.protocol.HttpProtocolBuilder
-import io.restassured.internal.common.assertion.AssertionSupport.properties
 
 import scala.concurrent.duration.DurationInt
 import scala.io.Source
+import scala.language.postfixOps
 
 
 class AddressesSummaryAddressSimulation extends Simulation {
@@ -33,8 +33,7 @@ class AddressesSummaryAddressSimulation extends Simulation {
   val timeFrameToIncreaseUsers: Int = properties.getProperty("timeFrameToIncreaseUsers").toInt
   val maxTestDuration: Int = properties.getProperty("maxTestDuration").toInt
 
-  // Set-up test data
-  val address = "Ae2tdPwUPEZK72eZZqulakkhaUfTCcoaGepvQP718aYBczw5uZmp47h1k14"
+  val dataStore = new DataStore
 
   // Set-up the URL
   val httpConf: HttpProtocolBuilder = http.baseUrl(host)
@@ -44,7 +43,7 @@ class AddressesSummaryAddressSimulation extends Simulation {
   def getAddressesSummaryAddress: ChainBuilder = {
     exec (
       http("Get addresses/summary/{address}")
-        .get(String.format("addresses/summary/%s", address))
+        .get(String.format("addresses/summary/%s", dataStore.getAddressHash))
         .check(status.is(200))
     )
   }

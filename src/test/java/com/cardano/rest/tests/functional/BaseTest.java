@@ -7,12 +7,16 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+import com.cardano.rest.tests.DataStore;
+
 public class BaseTest {
 
     protected String host;
+    protected DataStore dataStore;
 
     @BeforeSuite
     public void setupProperties() {
+        this.dataStore = new DataStore();
     }
 
     @BeforeTest

@@ -25,7 +25,7 @@ public class GenesisTest extends BaseTest {
             contentType(ContentType.JSON);
     }
 
-    @Test(dependsOnMethods = "genesisSummary_basicResponse_test")
+    @Test
     @Description("genesis/summary matches expected JSON schema")
     public void genesisSummary_validSchema_test() {
         String endpoint = "genesis/summary";

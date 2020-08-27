@@ -67,10 +67,10 @@ public class BlocksTest extends BaseTest {
             .body(matchesJsonSchemaInClasspath("schemas/valid-blocks-pages-total-schema.json"));
     }
 
-    @Test(dataProvider = "blockHashes", dataProviderClass = DataStore.class)
+    @Test
     @Description("blocks/summary/{blockHash} responds")
-    public void blocksSummaryBlockhash_basicResponse_test(String blockHash) {
-        String endpoint = String.format("blocks/summary/%s", blockHash);
+    public void blocksSummaryBlockhash_basicResponse_test() {
+        String endpoint = String.format("blocks/summary/%s", this.dataStore.getBlockHash());
         String url = this.host + endpoint;
 
         given().
@@ -83,10 +83,10 @@ public class BlocksTest extends BaseTest {
             contentType(ContentType.JSON);
     }
 
-    @Test(dataProvider = "blockHashes", dataProviderClass = DataStore.class, dependsOnMethods = "blocksSummaryBlockhash_basicResponse_test")
+    @Test
     @Description("blocks/summary/{blockHash} matches expected JSON schema")
-    public void blocksSummaryBlockhash_validSchema_test(String blockHash) {
-        String endpoint = String.format("blocks/summary/%s", blockHash);
+    public void blocksSummaryBlockhash_validSchema_test() {
+        String endpoint = String.format("blocks/summary/%s", this.dataStore.getBlockHash());
         String url = this.host + endpoint;
 
         given().
@@ -96,10 +96,10 @@ public class BlocksTest extends BaseTest {
             .body(matchesJsonSchemaInClasspath("schemas/valid-blocks-summary-blockhash-schema.json"));
     }
 
-    @Test(dataProvider = "blockHashes", dataProviderClass = DataStore.class)
+    @Test
     @Description("blocks/txs/{blockHash} responds")
-    public void blocksTxsBlockhash_basicResponse_test(String blockHash) {
-        String endpoint = String.format("blocks/txs/%s", blockHash);
+    public void blocksTxsBlockhash_basicResponse_test() {
+        String endpoint = String.format("blocks/summary/%s", this.dataStore.getBlockHash());
         String url = this.host + endpoint;
 
         given().
@@ -112,10 +112,10 @@ public class BlocksTest extends BaseTest {
             contentType(ContentType.JSON);
     }
 
-    @Test(dataProvider = "blockHashes", dataProviderClass = DataStore.class, dependsOnMethods = "blocksTxsBlockhash_basicResponse_test")
+    @Test
     @Description("blocks/txs/{blockHash} matches expected JSON schema")
-    public void blocksTxsBlockhash_validSchema_test(String blockHash) {
-        String endpoint = String.format("blocks/txs/%s", blockHash);
+    public void blocksTxsBlockhash_validSchema_test() {
+        String endpoint = String.format("blocks/summary/%s", this.dataStore.getBlockHash());
         String url = this.host + endpoint;
 
         given().

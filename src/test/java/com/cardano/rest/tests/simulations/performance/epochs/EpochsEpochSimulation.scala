@@ -1,8 +1,8 @@
 package com.cardano.rest.tests.simulations.performance.epochs
 
+import java.net.URL
 import java.util.Properties
 
-import com.typesafe.config.{Config, ConfigFactory}
 import io.gatling.core.Predef._
 import io.gatling.core.structure.{ChainBuilder, ScenarioBuilder}
 import io.gatling.http.Predef._
@@ -10,12 +10,14 @@ import io.gatling.http.protocol.HttpProtocolBuilder
 
 import scala.concurrent.duration.DurationInt
 import scala.io.Source
+import scala.language.postfixOps
 
+import com.cardano.rest.tests.DataStore
 
 class EpochsEpochSimulation extends Simulation {
 
-  var properties : Properties = null
-  val url = getClass.getResource("/config.properties")
+  var properties : Properties = _
+  val url: URL = getClass.getResource("/config.properties")
   if (url != null) {
     val source = Source.fromURL(url)
 
@@ -31,8 +33,7 @@ class EpochsEpochSimulation extends Simulation {
   val timeFrameToIncreaseUsers: Int = properties.getProperty("timeFrameToIncreaseUsers").toInt
   val maxTestDuration: Int = properties.getProperty("maxTestDuration").toInt
 
-
-  val epoch = "1"
+  val dataStore = new DataStore
 
   val httpConf: HttpProtocolBuilder = http.baseUrl(host)
     .header("Accept", "application/json")
@@ -40,7 +41,7 @@ class EpochsEpochSimulation extends Simulation {
   def getEpochsEpoch: ChainBuilder = {
     exec (
       http("Get epochs/{epoch}")
-        .get(String.format("epochs/%s", epoch))
+        .get(String.format("epochs/%s", dataStore.getEpoch))
         .check(status.is(200))
     )
   }

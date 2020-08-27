@@ -2,6 +2,7 @@ package com.cardano.rest.tests.simulations.performance.blocks
 
 import java.util.Properties
 
+import com.cardano.rest.tests.DataStore
 import com.typesafe.config.{Config, ConfigFactory}
 import io.gatling.core.Predef._
 import io.gatling.core.structure.{ChainBuilder, ScenarioBuilder}
@@ -31,8 +32,7 @@ class BlocksTxsBlockhashSimulation extends Simulation {
   val timeFrameToIncreaseUsers: Int = properties.getProperty("timeFrameToIncreaseUsers").toInt
   val maxTestDuration: Int = properties.getProperty("maxTestDuration").toInt
 
-
-  val blockhash = "534097d96a5ef35601ac5b5ea65d168858553cda7edd3f0e004c4129ee6c3172"
+  val dataStore = new DataStore
 
   val httpConf: HttpProtocolBuilder = http.baseUrl(host)
     .header("Accept", "application/json")
@@ -40,7 +40,7 @@ class BlocksTxsBlockhashSimulation extends Simulation {
   def getBlocksTxsBlockhashTotal: ChainBuilder = {
     exec (
       http("Get blocks/txs/{blockhash}")
-        .get(String.format("blocks/txs/%s", blockhash))
+        .get(String.format("blocks/txs/%s", dataStore.getBlockHash))
         .check(status.is(200))
     )
   }

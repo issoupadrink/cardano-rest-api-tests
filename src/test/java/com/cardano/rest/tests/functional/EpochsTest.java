@@ -9,10 +9,10 @@ import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInC
 
 public class EpochsTest extends BaseTest {
 
-    @Test(dataProvider = "epochs", dataProviderClass = DataStore.class)
+    @Test
     @Description("epochs/{epoch} responds")
-    public void epochsEpoch_basicResponse_test(String epoch) {
-        String endpoint = String.format("epochs/%s", epoch);
+    public void epochsEpoch_basicResponse_test() {
+        String endpoint = String.format("epochs/%s", this.dataStore.getEpoch());
         String url = this.host + endpoint;
 
         given().
@@ -25,10 +25,10 @@ public class EpochsTest extends BaseTest {
             contentType(ContentType.JSON);
     }
 
-    @Test(dataProvider = "epochs", dataProviderClass = DataStore.class, dependsOnMethods = "epochsEpoch_basicResponse_test")
+    @Test
     @Description("epochs/{epoch} matches expected JSON schema")
-    public void epochsEpoch_validSchema_test(String epoch) {
-        String endpoint = String.format("epochs/%s", epoch);
+    public void epochsEpoch_validSchema_test() {
+        String endpoint = String.format("epochs/%s", this.dataStore.getEpoch());
         String url = this.host + endpoint;
 
         given().
@@ -38,10 +38,10 @@ public class EpochsTest extends BaseTest {
             .body(matchesJsonSchemaInClasspath("schemas/valid-epochs-epoch-schema.json"));
     }
 
-    @Test(dataProvider = "epochs-slots", dataProviderClass = DataStore.class)
+    @Test
     @Description("epochs/{epoch}/{slot} responds")
-    public void epochsEpochSlot_basicResponse_test(String epoch, String slot) {
-        String endpoint = String.format("epochs/%s/%s", epoch, slot);
+    public void epochsEpochSlot_basicResponse_test() {
+        String endpoint = String.format("epochs/%s/%s", this.dataStore.getEpoch(), this.dataStore.getSlot());
         String url = this.host + endpoint;
 
         given().
@@ -54,10 +54,10 @@ public class EpochsTest extends BaseTest {
             contentType(ContentType.JSON);
     }
 
-    @Test(dataProvider = "epochs-slots", dataProviderClass = DataStore.class, dependsOnMethods = "epochsEpochSlot_basicResponse_test")
+    @Test
     @Description("epochs/{epoch}/{slot} matches expected JSON schema")
-    public void epochsEpochSlot_validSchema_test(String epoch, String slot) {
-        String endpoint = String.format("epochs/%s/%s", epoch, slot);
+    public void epochsEpochSlot_validSchema_test() {
+        String endpoint = String.format("epochs/%s/%s", this.dataStore.getEpoch(), this.dataStore.getSlot());
         String url = this.host + endpoint;
 
         given().
