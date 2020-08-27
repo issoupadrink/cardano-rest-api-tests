@@ -46,26 +46,25 @@ http://localhost/
 
 Performance reports can be found here:
 ```
-addresses/summary/{address} =>         http://localhost/gatling/addressessummaryaddresssimulation	
-block/{blockhash}/address/{address} => http://localhost/gatling/blockblockhashaddressaddresssimulation	
+addresses/summary/{address} =>         localhost/gatling/addressessummaryaddresssimulation	
+block/{blockhash}/address/{address} => localhost/gatling/blockblockhashaddressaddresssimulation	
 
-blocks/pages =>                        http://localhost/gatling/blockspagessimulation			
-blocks/pages/total =>                  http://localhost/gatling/blockspagestotalsimulation		
-blocks/summary/{blockhash} =>          http://localhost/gatling/blockssummaryblockhashsimulation	
-blocks/txs/{blockhash} =>              http://localhost/gatling/blockstxsblockhashsimulation	
+blocks/pages =>                        localhost/gatling/blockspagessimulation			
+blocks/pages/total =>                  localhost/gatling/blockspagestotalsimulation		
+blocks/summary/{blockhash} =>          localhost/gatling/blockssummaryblockhashsimulation	
+blocks/txs/{blockhash} =>              localhost/gatling/blockstxsblockhashsimulation	
 
-epochs/{epoch} =>                      http://localhost/gatling/epochsepochsimulation			
-epochs/{epoch}/slots/{slot} =>         http://localhost/gatling/epochsepochslotsslotsimulation		
+epochs/{epoch} =>                      localhost/gatling/epochsepochsimulation			
+epochs/{epoch}/slots/{slot} =>         localhost/gatling/epochsepochslotsslotsimulation		
 
-genesis/address =>                     http://localhost/gatling/genesisaddresssimulation
-genesis/summary =>                     http://localhost/gatling/genesissummarysimulation
-genesis/address/pages/total            http://localhost/gatling/genesisaddresspagestotalsimulation
-supply/ada =>                          http://localhost/gatling/supplyadasimulation
+genesis/address =>                     localhost/gatling/genesisaddresssimulation
+genesis/summary =>                     localhost/gatling/genesissummarysimulation
+genesis/address/pages/total            localhost/gatling/genesisaddresspagestotalsimulation
+supply/ada =>                          localhost/gatling/supplyadasimulation
 
-txs/summary/{tx} =>                    http://localhost/gatling/txssummarytxsimulation
-txs/last =>                            http://localhost/gatling/txslastsimulation
-stats/txs =>                           http://localhost/gatling/statstxssimulation
-
+txs/summary/{tx} =>                    localhost/gatling/txssummarytxsimulation
+txs/last =>                            localhost/gatling/txslastsimulation
+stats/txs =>                           localhost/gatling/statstxssimulation
 ```
 
 
