@@ -17,9 +17,9 @@ mvn gatling:test -Dhost={HostName} -Dgatling.SimulationClass={PathToTestClass}
 
 ## Reports
 
-To access the functional test report, this command will set up allure reports at http://localhost:8081:
+To access the functional test report, this command will set up allure reports at http://localhost:8080:
 ```
-allure serve target/allure-results -p 8081
+allure serve target/allure-results -p 8080
 ```
 
 Gatling reports are stored in `/target/gatling/{GatlingTestRun}/index.html`
@@ -34,7 +34,37 @@ allure --version
 
 ## Docker
 
-You can run the functional tests and serve its Allure report by running:
+You can run the tests by running:
 ```
 docker-compose up
 ```
+
+Allure report can be found here:
+```
+http://localhost/
+```
+
+Performance reports can be found here:
+```
+addresses/summary/{address} =>         localhost/gatling/addressessummaryaddresssimulation	
+block/{blockhash}/address/{address} => localhost/gatling/blockblockhashaddressaddresssimulation	
+
+blocks/pages =>                        localhost/gatling/blockspagessimulation			
+blocks/pages/total =>                  localhost/gatling/blockspagestotalsimulation		
+blocks/summary/{blockhash} =>          localhost/gatling/blockssummaryblockhashsimulation	
+blocks/txs/{blockhash} =>              localhost/gatling/blockstxsblockhashsimulation	
+
+epochs/{epoch} =>                      localhost/gatling/epochsepochsimulation			
+epochs/{epoch}/slots/{slot} =>         localhost/gatling/epochsepochslotsslotsimulation		
+
+genesis/address =>                     localhost/gatling/genesisaddresssimulation
+genesis/summary =>                     localhost/gatling/genesissummarysimulation
+genesis/address/pages/total            localhost/gatling/genesisaddresspagestotalsimulation
+supply/ada =>                          localhost/gatling/supplyadasimulation
+
+txs/summary/{tx} =>                    localhost/gatling/txssummarytxsimulation
+txs/last =>                            localhost/gatling/txslastsimulation
+stats/txs =>                           localhost/gatling/statstxssimulation
+```
+
+
