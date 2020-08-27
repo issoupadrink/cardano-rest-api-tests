@@ -1,15 +1,20 @@
 package com.cardano.rest.tests.simulations.performance.blocks
 
+import java.util.Properties
+
+import com.typesafe.config.ConfigFactory
 import io.gatling.core.Predef._
 import io.gatling.core.structure.{ChainBuilder, ScenarioBuilder}
 import io.gatling.http.Predef._
 import io.gatling.http.protocol.HttpProtocolBuilder
 
 import scala.concurrent.duration.DurationInt
+import scala.io.Source
 
 
 class BlocksPagesSimulation extends Simulation {
-  val host: String = System.getProperty("host")
+  val conf = ConfigFactory.load()
+  val host = conf.getString("host")
 
   val httpConf: HttpProtocolBuilder = http.baseUrl(host)
     .header("Accept", "application/json")

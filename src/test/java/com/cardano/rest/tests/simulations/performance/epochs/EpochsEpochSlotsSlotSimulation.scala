@@ -1,15 +1,21 @@
 package com.cardano.rest.tests.simulations.performance.epochs
 
+import java.util.Properties
+
+import com.typesafe.config.ConfigFactory
 import io.gatling.core.Predef._
 import io.gatling.core.structure.{ChainBuilder, ScenarioBuilder}
 import io.gatling.http.Predef._
 import io.gatling.http.protocol.HttpProtocolBuilder
 
 import scala.concurrent.duration.DurationInt
+import scala.io.Source
 
 
 class EpochsEpochSlotsSlotSimulation extends Simulation {
-  val host: String = System.getProperty("host")
+  val conf = ConfigFactory.load()
+  val host = conf.getString("host")
+
   val epoch = "1"
   val slot = "1"
 

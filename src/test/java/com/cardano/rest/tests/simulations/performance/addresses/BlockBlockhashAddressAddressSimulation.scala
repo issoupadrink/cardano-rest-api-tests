@@ -1,15 +1,21 @@
 package com.cardano.rest.tests.simulations.performance.addresses
 
+import java.util.Properties
+
+import com.typesafe.config.ConfigFactory
 import io.gatling.core.Predef._
 import io.gatling.core.structure.{ChainBuilder, ScenarioBuilder}
 import io.gatling.http.Predef._
 import io.gatling.http.protocol.HttpProtocolBuilder
 
 import scala.concurrent.duration.DurationInt
+import scala.io.Source
 
 
 class BlockBlockhashAddressAddressSimulation extends Simulation {
-  val host: String = System.getProperty("host")
+  val conf = ConfigFactory.load()
+  val host = conf.getString("host")
+
   val blockHash = "534097d96a5ef35601ac5b5ea65d168858553cda7edd3f0e004c4129ee6c3172"
   val address = "Ae2tdPwUPEZK72eZZqulakkhaUfTCcoaGepvQP718aYBczw5uZmp47h1k14"
 
