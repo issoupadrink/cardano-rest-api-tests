@@ -73,4 +73,14 @@ txs/last =>                            localhost/gatling/txslastsimulation
 stats/txs =>                           localhost/gatling/statstxssimulation
 ```
 
+## How does the project work? 
 
+The tests are ran as part of the docker container so that I can ensure they work as part of CI. The results are hosted on an nginx web server which is accessed through port 80. [TravisCI](https://travis-ci.org/github/issoupadrink/cardano-rest-tests) runs these tests against `cardano-rest` whenever its updated. You can download the respective container that was used to test a particular commit from `DockerHub` and view its results.  
+
+### Configuration
+
+`config.properties` contains the network and performance testing parameters. You can choose to run with `testnet` or `mainnet` data, and any sort of customised performance test you might want. Note: be careful you don't DoS `mainnet`! The default network is `testnet` with low performance parameters. 
+
+### Test data
+
+Test data is randomly selected from data files in `resources/data/<network>`. If you want to test specific `addresses`, `blocks`, or `transactions`, you can replace the values in those files. `Epoch` and `slot` values are randomly selected from a range of ints suitable for Byron and Shelley, and can be found in the `DataStore.scala` file. 
