@@ -2,10 +2,10 @@ language: ruby
 services:
   - docker
 
-script:
-  - docker-compose up
+before_script:
+  - docker-compose up -d --build
 
-after_script:
+script:
   - docker-compose down
 
 after_success:
