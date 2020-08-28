@@ -40,6 +40,11 @@ You can run the tests by running:
 docker-compose up
 ```
 
+The repo is also available from DockerHub:
+```
+ohmyedd/cardano-rest-tests
+```
+
 Allure report can be found here:
 ```
 http://localhost/
