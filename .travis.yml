@@ -11,6 +11,7 @@ after_success:
   - docker push $DOCKER_USER/back:$TRAVIS_BUILD_NUMBER
   - docker tag back $DOCKER_USER/back:latest
   - docker push $DOCKER_USER/back:latest
+  - docker-compose down
 
 deploy:
   provider: s3
