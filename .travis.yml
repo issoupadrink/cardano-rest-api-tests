@@ -1,6 +1,16 @@
-language: scala
-sudo: false
-script: mvn gatling:test -Dhost=https://explorer.cardano-testnet.iohkdev.io/api/
+language: ruby
+services:
+  - docker
+
+script:
+  - docker-compose up
+
+after_success:
+  - docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+  - docker tag back $DOCKER_USER/back:$TRAVIS_BUILD_NUMBER
+  - docker push $DOCKER_USER/back:$TRAVIS_BUILD_NUMBER
+  - docker tag back $DOCKER_USER/back:latest
+  - docker push $DOCKER_USER/back:latest
 
 deploy:
   provider: s3
