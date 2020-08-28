@@ -1,9 +1,9 @@
 package com.cardano.rest.tests.simulations.performance.blocks
 
+import java.net.URL
 import java.util.Properties
 
 import com.cardano.rest.tests.DataStore
-import com.typesafe.config.{Config, ConfigFactory}
 import io.gatling.core.Predef._
 import io.gatling.core.structure.{ChainBuilder, ScenarioBuilder}
 import io.gatling.http.Predef._
@@ -15,8 +15,8 @@ import scala.io.Source
 
 class BlocksSummaryBlockhashSimulation extends Simulation {
 
-  var properties : Properties = null
-  val url = getClass.getResource("/config.properties")
+  var properties : Properties = _
+  val url: URL = getClass.getResource("/config.properties")
   if (url != null) {
     val source = Source.fromURL(url)
 

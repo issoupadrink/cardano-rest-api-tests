@@ -3,9 +3,8 @@ package com.cardano.rest.tests
 import java.net.URL
 import java.util.Properties
 
-import scala.collection.mutable
 import scala.collection.mutable.ListBuffer
-import scala.io.{BufferedSource, Source}
+import scala.io.Source
 import scala.util.Random
 
 class DataStore {

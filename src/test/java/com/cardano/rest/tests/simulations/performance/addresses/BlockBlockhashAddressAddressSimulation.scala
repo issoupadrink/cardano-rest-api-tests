@@ -1,6 +1,7 @@
 package com.cardano.rest.tests.simulations.performance.addresses
 
 
+import java.net.URL
 import java.util.Properties
 
 import com.cardano.rest.tests.DataStore
@@ -15,8 +16,8 @@ import scala.io.Source
 
 class BlockBlockhashAddressAddressSimulation extends Simulation {
 
-  var properties : Properties = null
-  val url = getClass.getResource("/config.properties")
+  var properties : Properties = _
+  val url: URL = getClass.getResource("/config.properties")
   if (url != null) {
     val source = Source.fromURL(url)
 

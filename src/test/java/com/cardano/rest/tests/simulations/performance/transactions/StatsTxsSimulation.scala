@@ -1,5 +1,6 @@
 package com.cardano.rest.tests.simulations.performance.transactions
 
+import java.net.URL
 import java.util.Properties
 
 import io.gatling.core.Predef._
@@ -13,8 +14,8 @@ import scala.io.Source
 
 class StatsTxsSimulation extends Simulation {
 
-  var properties : Properties = null
-  val url = getClass.getResource("/config.properties")
+  var properties : Properties = _
+  val url: URL = getClass.getResource("/config.properties")
   if (url != null) {
     val source = Source.fromURL(url)
 
