@@ -16,11 +16,12 @@ public class BaseTest {
 
     @BeforeSuite
     public void setupProperties() {
-        this.dataStore = new DataStore();
     }
 
     @BeforeTest
     public void setupTests() {
+        this.dataStore = new DataStore();
+
         String resourceName = "config.properties"; // could also be a constant
         ClassLoader loader = Thread.currentThread().getContextClassLoader();
         Properties props = new Properties();
