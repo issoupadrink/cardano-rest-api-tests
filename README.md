@@ -45,7 +45,7 @@ The repo is also available from DockerHub:
 ohmyedd/cardano-rest-tests
 ```
 
-Allure report can be found here:
+The Allure report (which covers functional tests) can be found here:
 ```
 http://localhost/
 ```
