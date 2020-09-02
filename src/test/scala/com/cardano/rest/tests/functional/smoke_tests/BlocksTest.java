@@ -1,5 +1,6 @@
-package com.cardano.rest.tests.functional;
+package com.cardano.rest.tests.functional.smoke_tests;
 
+import com.cardano.rest.tests.functional.BaseTest;
 import io.qameta.allure.Description;
 import io.restassured.http.ContentType;
 import org.testng.annotations.Test;
@@ -32,10 +33,10 @@ public class BlocksTest extends BaseTest {
         String url = this.host + endpoint;
 
         given().
-            get(url)
-        .then()
-        .assertThat()
-            .body(matchesJsonSchemaInClasspath("schemas/valid-blocks-pages-schema.json"));
+            get(url).
+        then().
+        assertThat().
+            body(matchesJsonSchemaInClasspath("schemas/valid-blocks-pages-schema.json"));
     }
 
     @Test
@@ -61,10 +62,10 @@ public class BlocksTest extends BaseTest {
         String url = this.host + endpoint;
 
         given().
-            get(url)
-        .then()
-            .assertThat()
-            .body(matchesJsonSchemaInClasspath("schemas/valid-blocks-pages-total-schema.json"));
+            get(url).
+        then().
+            assertThat().
+            body(matchesJsonSchemaInClasspath("schemas/valid-blocks-pages-total-schema.json"));
     }
 
     @Test
@@ -90,10 +91,10 @@ public class BlocksTest extends BaseTest {
         String url = this.host + endpoint;
 
         given().
-            get(url)
-        .then()
-            .assertThat()
-            .body(matchesJsonSchemaInClasspath("schemas/valid-blocks-summary-blockhash-schema.json"));
+            get(url).
+        then().
+            assertThat().
+            body(matchesJsonSchemaInClasspath("schemas/valid-blocks-summary-blockhash-schema.json"));
     }
 
     @Test
@@ -119,9 +120,9 @@ public class BlocksTest extends BaseTest {
         String url = this.host + endpoint;
 
         given().
-            get(url)
-        .then()
-            .assertThat()
-            .body(matchesJsonSchemaInClasspath("schemas/valid-blocks-txs-blockhash-schema.json"));
+            get(url).
+        then().
+            assertThat().
+            body(matchesJsonSchemaInClasspath("schemas/valid-blocks-txs-blockhash-schema.json"));
     }
 }

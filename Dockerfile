@@ -16,11 +16,13 @@ RUN ["/usr/local/bin/mvn-entrypoint.sh", "mvn", "verify", "clean", "--fail-never
 # Copy all files from host computer to container
 ADD . $HOME
 
-# Run functional tests in testng.xml
-RUN mvn test -Dsurefire.suiteXmlFiles=testng.xml
+# Run specified test suites
+RUN mvn test -Dsurefire.suiteXmlFiles=tests_functional-smoke.xml
+RUN mvn test -Dsurefire.suiteXmlFiles=tests_functional-data-validation.xml
+RUN mvn test -Dsurefire.suiteXmlFiles=tests_functional-data-intensive.xml
 
 # Run performance tests and edit the folder names
-RUN ./run-gatling.sh
+RUN ./tests_performance-runner.sh
 
 
 ############################

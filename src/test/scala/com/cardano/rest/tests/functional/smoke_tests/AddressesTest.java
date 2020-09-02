@@ -1,5 +1,6 @@
-package com.cardano.rest.tests.functional;
+package com.cardano.rest.tests.functional.smoke_tests;
 
+import com.cardano.rest.tests.functional.BaseTest;
 import io.qameta.allure.Description;
 import io.restassured.http.ContentType;
 import org.testng.annotations.Test;
