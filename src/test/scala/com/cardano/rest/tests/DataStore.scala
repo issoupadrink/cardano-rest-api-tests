@@ -32,7 +32,7 @@ class DataStore {
 
   def getSlot: String = {
     val r: Random.type = scala.util.Random
-    r.nextInt(21600).toString
+    r.nextInt(21599).toString
   }
 
   def getAddressHash: String = {
