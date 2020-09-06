@@ -15,7 +15,7 @@ are used as parameters.
 
 ### Data Intensive
 
-Tests to run schema validation against all endpoints but with 1000 random (correct) values. This takes ~20m because of
+Tests to run schema validation against all endpoints but with `n` values. This takes some time to complete because of
 a 1s delay between each call in order to prevent accidental load testing! 
 
 ## Simulations
