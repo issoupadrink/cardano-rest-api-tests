@@ -18,6 +18,7 @@ ADD . $HOME
 
 # Run specified test suites
 RUN mvn test -Dsurefire.suiteXmlFiles=tests_functional-smoke.xml
+RUN mvn test -Dsurefile.suiteXmlFiles=tests_oracle.xml
 RUN mvn test -Dsurefire.suiteXmlFiles=tests_functional-data-validation.xml
 RUN mvn test -Dsurefire.suiteXmlFiles=tests_functional-data-intensive.xml
 
