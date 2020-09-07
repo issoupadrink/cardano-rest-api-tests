@@ -18,12 +18,6 @@ are used as parameters.
 Tests to run schema validation against all endpoints but with `n` values. This takes some time to complete because of
 a 1s delay between each call in order to prevent accidental load testing! 
 
-### Oracle
-
-Oracle tests compare two versions of the RestAPI to ensure Data Parity. Note, this won't identify legacy errors but will identify regressions. 
-Known breaking changes will cause these tests to fail, and they should be ignored or updated accordingly. You can set the
-Oracle in `config.properties`.
-
 ## Simulations
 
 This package contains non-functional performance tests against `cardano-rest`.
