@@ -75,7 +75,7 @@ stats/txs =>                           localhost/gatling/statstxssimulation
 
 ## How does the project work? 
 
-The tests are ran as part of the docker container so that I can ensure they work as part of CI. The results are hosted on an nginx web server which is accessed through port 80. [TravisCI](https://travis-ci.org/github/issoupadrink/cardano-rest-tests) runs these tests against `cardano-rest` whenever its updated. You can download the respective container that was used to test a particular commit from `DockerHub` and view its results.  
+The tests are ran as part of the docker container so that I can ensure they work as part of CI. The results are hosted on an nginx web server which is accessed through port 80.
 
 ### Configuration
 
